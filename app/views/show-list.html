@@ -1,0 +1,29 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Super Power</th>
+        <th>Rich</th>
+        <th>Genius</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="person in filtered = (persons|skillFilter:selectedSkill)|orderBy:'name'">
+            <th>{{person.name}}</th>
+            <th><input type="checkbox" ng-model="person.superpower"></th>
+            <th><input type="checkbox" ng-model="person.rich"></th>
+            <th><input type="checkbox" ng-model="person.genius"></th>
+            <th>
+                <button ng-click="expand(person)" class="btn del-btn" ng-hide="person.showfull">Delete</button>
+                <div ng-show="person.showfull">
+                    <p ng-click="removePerson(person)"> &#10003 Yes</p>
+                    <p ng-click="expand(person)"> &#x02717 No</p>
+                </div>
+            </th>
+        </tr>
+    </tbody>
+</table>
+<a href="#superpower">Power</a>
+<a href="#rich">| Rich |</a>
+<a href="#genius">Genius</a>
