@@ -36,7 +36,6 @@ TestTable.run(function($rootScope,PersonsFactory){
     };
     $rootScope.clearForm = function($scope){
         $scope.name = null;
-        $scope.personForm.$setPristine();
     };
     $rootScope.removePerson = function(item){
         $rootScope.persons.splice($rootScope.persons.indexOf(item),1);
