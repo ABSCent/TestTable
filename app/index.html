@@ -11,7 +11,7 @@
         <div class="main-block column-7" ng-controller="MainController">
             <div class="panel">
                 <h1>Add new person </h1>
-                <form class="panel-form" name="personForm">
+                <form class="panel-form" name="personForm" ng-submit="personForm.$valid && addPerson(itself)">
                     <div class="slabel">
                         <input type="text" placeholder="Write the person's name" ng-model="name" class="jpinput" required>
                     </div>
@@ -21,7 +21,7 @@
                     <label for="power">Rich</label>
                     <input type="checkbox" id="genius" ng-model="genius">
                     <label for="power">Genius</label>
-                    <button class="btn add-btn" ng-click="addPerson(itself)">Add</button>
+                    <input type="submit" class="btn add-btn" value="Add">
                 </form>
             </div>
             <div class="data" ng-view ng-hide="isEmpty">

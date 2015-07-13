@@ -77,9 +77,8 @@ img {
     width: 95%;
     max-width: $grid-max-width;
   }
-  .main-block {
-    margin-left: 0;
-  }
+
+
   @for $i from 1 through $grid-columns {
     .column-#{$i} {
       width: 100% / $grid-columns * $i;

@@ -32,6 +32,11 @@ TestTable.run(function($rootScope,PersonsFactory){
         });
         PersonsFactory.save();
         $rootScope.$broadcast('add');
+        $rootScope.clearForm($scope);
+    };
+    $rootScope.clearForm = function($scope){
+        $scope.name = null;
+        $scope.personForm.$setPristine();
     };
     $rootScope.removePerson = function(item){
         $rootScope.persons.splice($rootScope.persons.indexOf(item),1);

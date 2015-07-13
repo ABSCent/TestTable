@@ -1,19 +1,28 @@
 angular.module('TestTable').factory('PersonsFactory',function($rootScope,$localStorage){
+    function InitStorage(){
+        if(!$localStorage.persons){
+            $localStorage.persons = [];
+        }
+    }
     function GetPersons(){
+        InitStorage();
         return $localStorage.persons;
     }
     function SavePersons(){
+        InitStorage();
         $localStorage.persons = $rootScope.persons;
     }
     function TotalPersons(){
-        return $rootScope.persons.length;
+        InitStorage();
+        return $localStorage.persons.length;
     }
     function TotalBySkill(){
+        InitStorage();
         var counts = [];
         counts.rich =0;
         counts.genius = 0;
         counts.superpower = 0;
-        angular.forEach($rootScope.persons,function(person){
+        angular.forEach($localStorage.persons,function(person){
             if(person.superpower){
                 counts.superpower++;
             }
