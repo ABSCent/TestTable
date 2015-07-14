@@ -11,9 +11,6 @@ angular.module('TestTable').controller('SkillController',function($scope,$locati
         }
         PersonsFactory.add(data);
     });
-    $scope.expand = function (item) {
-        PersonsFactory.expand(item,$scope);
-    };
     PersonsFactory.setCheckbox(skill);
     var checks = PersonsFactory.getCheckbox();
     $scope.person.genius = checks.genius;
