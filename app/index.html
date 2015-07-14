@@ -8,23 +8,8 @@
 <body>
 <div class="wrapper" ng-app="TestTable">
     <div class="row">
-        <div class="main-block column-7" ng-controller="MainController">
-            <div class="panel">
-                <h1>Add new person </h1>
-                <form class="panel-form" name="personForm" ng-submit="personForm.$valid && addPerson(itself)">
-                    <div class="slabel">
-                        <input type="text" placeholder="Write the person's name" ng-model="name" class="jpinput" required>
-                    </div>
-                    <input type="checkbox" id="power" ng-model="superpower">
-                    <label for="power">Super Power</label>
-                    <input type="checkbox" id="rich" ng-model="rich">
-                    <label for="power">Rich</label>
-                    <input type="checkbox" id="genius" ng-model="genius">
-                    <label for="power">Genius</label>
-                    <input type="submit" class="btn add-btn" value="Add">
-                </form>
-            </div>
-            <div class="data" ng-view ng-hide="isEmpty">
+        <div class="main-block column-7">
+            <div class="data" ng-view>
             </div>
         </div>
         <sidebar></sidebar>

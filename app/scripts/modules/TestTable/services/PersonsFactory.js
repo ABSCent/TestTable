@@ -1,4 +1,10 @@
 angular.module('TestTable').factory('PersonsFactory',function($rootScope,$localStorage){
+    var checkList = {
+        rich:false,
+        genius:false,
+        superpower:false
+        },
+        persons = GetPersons();
     function InitStorage(){
         if(!$localStorage.persons){
             $localStorage.persons = [];
@@ -8,9 +14,22 @@ angular.module('TestTable').factory('PersonsFactory',function($rootScope,$localS
         InitStorage();
         return $localStorage.persons;
     }
-    function SavePersons(){
+    function SavePersons(persons){
         InitStorage();
-        $localStorage.persons = $rootScope.persons;
+        $localStorage.persons = persons;
+    }
+    function AddPerson(person){
+        persons.push({
+            name: person.name,
+            superpower: person.superpower,
+            rich: person.rich,
+            genius: person.genius
+        });
+        SavePersons(persons);
+    }
+    function RemovePerson(person){
+        persons.splice(persons.indexOf(person), 1);
+        PersonsFactory.save();
     }
     function TotalPersons(){
         InitStorage();
@@ -18,19 +37,19 @@ angular.module('TestTable').factory('PersonsFactory',function($rootScope,$localS
     }
     function TotalBySkill(){
         InitStorage();
-        var counts = [];
-        counts.rich =0;
-        counts.genius = 0;
-        counts.superpower = 0;
+        var counts = {
+            rich:0,
+            genius:0,
+            superpower:0
+        };
         angular.forEach($localStorage.persons,function(person){
-            if(person.superpower){
-                counts.superpower++;
-            }
-            if(person.rich){
-                counts.rich++;
-            }
-            if(person.genius){
-                counts.genius++
+            for(var property in person)
+            {
+                if(person.hasOwnProperty(property) && counts.hasOwnProperty(property)){
+                    if(person[property]){
+                        counts[property]++;
+                    }
+                }
             }
         });
         return counts;
@@ -38,11 +57,40 @@ angular.module('TestTable').factory('PersonsFactory',function($rootScope,$localS
     function isEmpty(){
         return TotalPersons() == 0;
     }
+    function setChecks(skill){
+        for(var property in checkList){
+            if(checkList.hasOwnProperty(property)){
+              if(property==skill){
+                  checkList[property]=true;
+              }
+              else{
+                  checkList[property]=false;
+              }
+            }
+        }
+    }
+    function getChecks(){
+        return checkList;
+    }
+    function expand(item,scope){
+        angular.forEach(scope.persons, function (i) {
+            if (i === item) {
+                i.showfull = !i.showfull;
+            } else {
+                i.showfull = false;
+            }
+        });
+    }
     return{
         getAll:GetPersons,
         save:SavePersons,
         total:TotalPersons,
         totalBySkill:TotalBySkill,
-        isEmpty:isEmpty
+        isEmpty:isEmpty,
+        setCheckbox:setChecks,
+        getCheckbox:getChecks,
+        expand:expand,
+        add:AddPerson,
+        remove:RemovePerson
     }
 });

@@ -104,7 +104,7 @@ p {
   padding: 0;
   border: 2px solid black;
   background-color: #efefef;
-  min-height: 350px;
+  min-height: 365px;
 }
 
 .panel-form.ng-invalid .jpinput {
@@ -158,7 +158,10 @@ p {
   margin-left: 5%;
   border: 2px solid black;
 }
-
+.sidebar .panel a{
+  margin-top: 5%;
+  display: inline-block;
+}
 .sidebar p, .sidebar h1, .sidebar a{
   padding-left: 15px;
 }
@@ -169,14 +172,14 @@ p {
   display: block;
   color:#000000;
 }
-.sidebar a:last-child{
-  margin-bottom: 10%;
-}
+
 .sidebar a.small-text {
   font-size: 1em;
   text-decoration: none;
 }
-
+.sidebar a.small-text:last-child{
+  margin-bottom: 15%;
+}
 // Theme Config
 // ====================================
 
@@ -225,7 +228,7 @@ a{
   text-decoration: none;
 }
 a:focus{
-  color: $successColor;
+  color: $warnColor;
 }
 a.disabled {
   color: #AAAAAA;

@@ -3,7 +3,7 @@ angular.module('TestTable').filter('skillFilter',function(){
         if (!angular.isUndefined(persons) && !angular.isUndefined(selectedSkill) && selectedSkill.length > 0) {
             var tempPersons = [];
                 angular.forEach(persons, function (person) {
-                    if (angular.equals(eval(selectedSkill), true)) {
+                    if (angular.equals(person[selectedSkill], true)) {
                         tempPersons.push(person);
                     }
                 });
